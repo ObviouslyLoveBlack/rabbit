@@ -1,8 +1,12 @@
-<template>
-    <Header></Header>
-    <router-view></router-view>
-</template>
 <script setup>
-import Header from './header.vue'
-
+import LayoutNav from './nav.vue'
+import LayoutHeader from './header.vue'
+import LayoutFooter from './footer.vue'
 </script>
+
+<template>
+  <LayoutNav />
+  <LayoutHeader />
+  <RouterView />
+  <LayoutFooter />
+</template>

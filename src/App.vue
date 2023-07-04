@@ -4,9 +4,6 @@
 
 <template>
    <router-view></router-view>
-   <div class="test">
-    djsada
-   </div>
 </template>
 
 <style lang="scss" scoped>

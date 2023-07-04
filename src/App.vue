@@ -3,10 +3,18 @@
 </script>
 
 <template>
-   <el-button type="success">Primary</el-button>
+   <router-view></router-view>
+   <div class="test">
+    djsada
+   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+.test{
+  width: 100px;
+  height: 100px;
+  background: $priceColor;
+}
 header {
   line-height: 1.5;
   max-height: 100vh;

@@ -1,16 +1,3 @@
-<script setup>
-import panel from './panel.vue'
-import { getHotInfo } from '@/api/home'
-import { ref } from 'vue'
-const hotList = ref([])
-const getHotList = async () => {
-  const res = await getHotInfo()
-  hotList.value = res.result
-}
-getHotList()
-
-</script>
-
 <template>
   <panel title="人气推荐" sub-title="人气爆款 不容错过">
       <ul class="goods-list">
@@ -25,6 +12,18 @@ getHotList()
   </panel>
 </template>
 
+<script setup>
+import panel from './panel.vue'
+import { getHotInfo } from '@/api/home'
+import { ref } from 'vue'
+const hotList = ref([])
+const getHotList = async () => {
+  const res = await getHotInfo()
+  hotList.value = res.result
+}
+getHotList()
+
+</script>
 <style scoped lang='scss'>
 .goods-list {
   display: flex;

@@ -23,3 +23,9 @@ export function getHotInfo(){
         url:'/home/hot'
     })
 }
+
+export function getProduct(){
+    return request({
+        url:'/home/goods'
+    })
+}

@@ -5,3 +5,9 @@ export function getMenuInfo(){
         url:'/home/category/head'
     })
 }
+
+export function getBannerList(){
+    return request({
+        url:'/home/banner'
+    })
+}

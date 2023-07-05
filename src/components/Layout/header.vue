@@ -1,7 +1,3 @@
-<script setup>
-
-</script>
-
 <template>
   <header class='app-header'>
     <div class="container">
@@ -12,9 +8,9 @@
         <li class="home">
           <RouterLink to="/">首页</RouterLink>
         </li>
-        <li> <RouterLink to="/">居家</RouterLink> </li>
-        <li> <RouterLink to="/">美食</RouterLink> </li>
-        <li> <RouterLink to="/">服饰</RouterLink> </li>
+        <li v-for="action in categoryList" :key="action.id"><RouterLink to="/">{{action.name}}</RouterLink> </li>
+        <!-- <li> <RouterLink to="/">美食</RouterLink> </li> -->
+        <!-- <li> <RouterLink to="/">服饰</RouterLink> </li> -->
       </ul>
       <div class="search">
         <i class="iconfont icon-search"></i>
@@ -25,6 +21,21 @@
     </div>
   </header>
 </template>
+<script setup>
+import {getCategory} from '@/api/layout'
+import {onMounted, ref} from 'vue'
+
+
+const categoryList = ref([])
+const getCategoryList = async () =>{
+  const res = await getCategory()
+  console.log(res);
+  categoryList.value = res.result
+} 
+onMounted(()=>{
+  getCategoryList()
+})
+</script>
 
 
 <style scoped lang='scss'>
@@ -38,7 +49,6 @@
 
   .logo {
     width: 200px;
-
     a {
       display: block;
       height: 132px;
@@ -49,9 +59,10 @@
   }
 
   .app-header-nav {
-    width: 820px;
+    width: 850px;
+    // border: 1px solid red;
     display: flex;
-    padding-left: 40px;
+    padding-left: 30px;
     position: relative;
     z-index: 998;
   
@@ -59,7 +70,6 @@
       margin-right: 40px;
       width: 38px;
       text-align: center;
-  
       a {
         font-size: 16px;
         line-height: 32px;

@@ -8,9 +8,7 @@
         <li class="home">
           <RouterLink to="/">首页</RouterLink>
         </li>
-        <li v-for="action in categoryList" :key="action.id"><RouterLink to="/">{{action.name}}</RouterLink> </li>
-        <!-- <li> <RouterLink to="/">美食</RouterLink> </li> -->
-        <!-- <li> <RouterLink to="/">服饰</RouterLink> </li> -->
+        <li v-for="action in categoryStroe.categoryList" :key="action.id"><RouterLink to="/">{{action.name}}</RouterLink> </li>
       </ul>
       <div class="search">
         <i class="iconfont icon-search"></i>
@@ -22,19 +20,8 @@
   </header>
 </template>
 <script setup>
-import {getCategory} from '@/api/layout'
-import {onMounted, ref} from 'vue'
-
-
-const categoryList = ref([])
-const getCategoryList = async () =>{
-  const res = await getCategory()
-  console.log(res);
-  categoryList.value = res.result
-} 
-onMounted(()=>{
-  getCategoryList()
-})
+import {useCategoryStore} from '@/stores/category'
+const categoryStroe =  useCategoryStore()
 </script>
 
 

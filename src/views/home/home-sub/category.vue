@@ -43,8 +43,8 @@ const categoryStore = useCategoryStore()
   .menu {
     li {
       padding-left: 40px;
-      height: 55px;
-      line-height: 55px;
+      height: 56px;
+      line-height: 56px;
 
       &:hover {
         background: $xtxColor;

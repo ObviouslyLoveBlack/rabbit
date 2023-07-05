@@ -11,3 +11,15 @@ export function getBannerList(){
         url:'/home/banner'
     })
 }
+
+export function getNewInfo(){
+    return request({
+        url:'/home/new'
+    })
+}
+
+export function getHotInfo(){
+    return request({
+        url:'/home/hot'
+    })
+}

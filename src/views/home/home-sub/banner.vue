@@ -1,6 +1,6 @@
 <template>
   <div class="home-banner">
-    <el-carousel height="500px">
+    <el-carousel height="500px" trigger="click">
       <el-carousel-item v-for="item in bannerList" :key="item.d">
         <img :src="item.imgUrl" alt="">
       </el-carousel-item>

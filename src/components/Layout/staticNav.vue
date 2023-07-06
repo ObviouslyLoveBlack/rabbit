@@ -7,7 +7,7 @@
         <li class="home">
           <RouterLink to="/">首页</RouterLink>
         </li>
-        <li v-for="action in categoryStroe.categoryList" :key="action.id"><RouterLink to="/">{{action.name}}</RouterLink> </li>
+        <li v-for="action in categoryStroe.categoryList" :key="action.id"><RouterLink active-class="active" :to="`/category/${action.id}`">{{action.name}}</RouterLink> </li>
       </ul>
 
       <div class="right">

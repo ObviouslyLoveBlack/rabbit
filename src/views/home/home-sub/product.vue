@@ -33,7 +33,6 @@ import { ref } from 'vue'
 const goodsProduct = ref([])
 const getProductList = async ()=>{
     const res = await getProduct()
-    console.log(res);
     goodsProduct.value = res.result
 }
     getProductList()

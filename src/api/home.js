@@ -6,9 +6,12 @@ export function getMenuInfo(){
     })
 }
 
-export function getBannerList(){
+export function getBannerList(distributionSite='1'){
     return request({
-        url:'/home/banner'
+        url:'/home/banner',
+        params:{
+            distributionSite,
+        }
     })
 }
 

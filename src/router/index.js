@@ -6,15 +6,15 @@ const router = createRouter({
   routes: [
    {
     path:'/',
-    redirect:'/home',
+    // redirect:'/home',
     component:()=>import('@/components/Layout/index.vue'),
     children:[
       {
-        path:'/home',
+        path:'',
         component:()=>import('@/views/home/index.vue')
       },
       {
-        path:'/category',
+        path:'/category/:id',
         component:()=>import('@/views/category/index.vue')
       }
     ]

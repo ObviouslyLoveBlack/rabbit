@@ -27,7 +27,13 @@ const router = createRouter({
     path:'/login',
     component:()=>import('@/views/login.vue')
    }
-  ]
+  ],
+  // 路由行为配置项，每次跳转路由时置顶
+  scrollBehavior(){
+    return{
+      top:0
+    }
+  }
 })
 
 export default router

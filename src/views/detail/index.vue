@@ -17,7 +17,7 @@
           <div class="goods-info">
             <div class="media">
               <!-- 图片预览区 -->
-
+              <imageView :imageList="detailObj.mainPictures"></imageView>
               <!-- 统计数量 -->
               <ul class="goods-sales">
                 <li>
@@ -117,6 +117,7 @@
 
 <script setup>
 import detailHot from '@/views/detail/detail-sub/detailHot.vue'
+import imageView from '@/components/imageView/index.vue'
 import {getDetailById} from '@/api/detail'
 import { ref } from 'vue'
 import {useRoute} from 'vue-router'

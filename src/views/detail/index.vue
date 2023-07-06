@@ -100,7 +100,10 @@
             </div>
             <!-- 24热榜+专题推荐 -->
             <div class="goods-aside">
-
+              <!-- 24小时 -->
+              <detailHot  :detailType="1"></detailHot>
+              <!-- 周热榜 -->
+              <detailHot  :detailType="2"></detailHot>
             </div>
           </div>
         </div>
@@ -113,6 +116,7 @@
 </template>
 
 <script setup>
+import detailHot from '@/views/detail/detail-sub/detailHot.vue'
 import {getDetailById} from '@/api/detail'
 import { ref } from 'vue'
 import {useRoute} from 'vue-router'

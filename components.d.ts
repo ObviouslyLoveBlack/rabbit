@@ -31,6 +31,7 @@ declare module 'vue' {
     StaticNav: typeof import('./src/components/Layout/staticNav.vue')['default']
     TheWelcome: typeof import('./src/components/TheWelcome.vue')['default']
     WelcomeItem: typeof import('./src/components/WelcomeItem.vue')['default']
+    XtxSku: typeof import('./src/components/XtxSku/index.vue')['default']
   }
   export interface ComponentCustomProperties {
     vInfiniteScroll: typeof import('element-plus/es')['ElInfiniteScroll']

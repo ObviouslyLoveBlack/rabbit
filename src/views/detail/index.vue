@@ -66,7 +66,7 @@
                 </dl>
               </div>
               <!-- sku组件 -->
-
+              <XtxSku :goods="detailObj" @change="skuChange"></XtxSku>
               <!-- 数据组件 -->
 
               <!-- 按钮组件 -->
@@ -118,6 +118,7 @@
 <script setup>
 import detailHot from '@/views/detail/detail-sub/detailHot.vue'
 import imageView from '@/components/imageView/index.vue'
+import XtxSku from '@/components/XtxSku/index.vue'
 import {getDetailById} from '@/api/detail'
 import { ref } from 'vue'
 import {useRoute} from 'vue-router'
@@ -128,6 +129,9 @@ const detailObj = ref({})
 const detailById = async () => {
   const res = await getDetailById(route.params.id)
   detailObj.value = res.result
+}
+const skuChange = (options)=>{
+  console.log(options);
 }
 detailById()
 </script>

@@ -62,25 +62,32 @@
 </template>
 
 <script setup>
-import {validaPhone} from '@/utils/validator.js'
+// import {validaPhone} from '@/utils/validator.js'
+import {useUserStore} from '@/stores/user'
+import {useRouter} from 'vue-router'
+import { ElMessage } from 'element-plus'
+import 'element-plus/theme-chalk/el-message.css'
 import { ref } from "vue"
 
-const validator = (rules,val,callback)=>{
-      if(validaPhone(val)){
-        callback()
-      } else {
-        callback(new Error('请输入正确的手机号'))
-      }
-}
+// const validator = (rules,val,callback)=>{
+//       if(validaPhone(val)){
+//         callback()
+//       } else {
+//         callback(new Error('请输入正确的手机号'))
+//       }
+// }
+const router = useRouter()
+const useStore = useUserStore()
 const loginForm = ref({
-  account:'',
-  password:'',
+  account:13888888888,
+  password:'123456',
   agree:false
 })
 const  FormRef = ref(null)
 const rules ={
   account:[
-    {required: true, validator: validator, trigger: 'blur' }
+    {required: true, message: '账户名不为空', trigger: 'blur' }
+    // {required: true, validator, trigger: 'blur' }
   ],
   password:[
     {required: true, message: '密码不为空', trigger: 'blur' },
@@ -94,10 +101,13 @@ const rules ={
     }
   ]
 }
-const onSubmit = ()=>{
-   FormRef.value.validate((valid)=>{
+const onSubmit =async ()=>{
+  const {account,password} = loginForm.value
+   FormRef.value.validate(async (valid)=>{
       if(valid){
-        console.log('校验通过');
+      useStore.getUserInfo({account,password})
+      ElMessage.success('登录成功')
+      router.push('/')
       }
    })
 }

@@ -5,16 +5,18 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 // 全局指令注册
 import { lazyPlugin } from '@/directives/scroll'
+import piniaPluginPersistedstate  from 'pinia-plugin-persistedstate'
 
 import App from './App.vue'
 import router from './router'
 
 const app = createApp(App)
+const pinia = createPinia()
 
-app.use(createPinia())
+app.use(pinia)
 app.use(router)
 app.use(lazyPlugin)
-
+pinia.use(piniaPluginPersistedstate)
 
 app.mount('#app')
 //定义全局指令

@@ -29,7 +29,7 @@ const router = createRouter({
    },
    {
     path:'/login',
-    component:()=>import('@/views/login.vue')
+    component:()=>import('@/views/login/index.vue')
    }
   ],
   // 路由行为配置项，每次跳转路由时置顶

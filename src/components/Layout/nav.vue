@@ -2,8 +2,8 @@
   <nav class="app-topnav">
     <div class="container">
       <ul>
-        <template v-if="userInfo.token">
-          <li><a href="javascript:;"><i class="iconfont icon-user"></i>{{userInfo.account}}</a></li>
+        <template v-if="useStore.userInfo.token">
+          <li><a href="javascript:;"><i class="iconfont icon-user"></i>{{useStore.userInfo.account}}</a></li>
           <li>
             <el-popconfirm title="确认退出吗?" @confirm="confirm" confirm-button-text="确认" cancel-button-text="取消">
               <template #reference>
@@ -26,13 +26,12 @@
 
 <script setup>
 import {useUserStore} from '@/stores/user'
-import { useRouter } from 'vue-router'
 const useStore = useUserStore()
-const router = useRouter()
-const userInfo = useStore.userInfo
+// import { useRouter } from 'vue-router'
+// const router = useRouter()
 const confirm =()=>{
   useStore.Logout()
-  router.push('/login')
+  // router.push({path:'/login'})
 } 
 </script>
 <style scoped lang="scss">

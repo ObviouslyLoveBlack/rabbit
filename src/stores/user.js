@@ -3,7 +3,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { loginByUser } from '@/api/use'
-
+import router from '@/router'
 export const useUserStore = defineStore('user', () => {
   // 1. 定义管理用户数据的state
   const userInfo = ref({})
@@ -14,6 +14,7 @@ export const useUserStore = defineStore('user', () => {
   }
   const Logout = ()=>{
     userInfo.value = {}
+    router.push('/login')
   }
   // 3. 以对象的格式把state和action return
   return {

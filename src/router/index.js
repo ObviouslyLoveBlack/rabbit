@@ -25,6 +25,11 @@ const router = createRouter({
         path:'/detail/:id',
         component:()=>import('@/views/detail/index.vue'),
       },
+      // 购物车
+      {
+        path:'/cart',
+        component:()=>import('@/views/cartList/index.vue'),
+      },
     ]
    },
    {

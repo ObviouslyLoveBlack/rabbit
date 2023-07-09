@@ -47,8 +47,8 @@
               <p class="g-name"> {{detailObj.name}} </p>
               <p class="g-desc">{{detailObj.desc}}</p>
               <p class="g-price">
-                <span>{{detailObj.oldPrice}}</span>
-                <span> {{detailObj.price}}</span>
+                <span>{{detailObj.price}}</span>
+                <span> {{detailObj.oldPrice}}</span>
               </p>
               <div class="g-service">
                 <dl>
@@ -68,10 +68,10 @@
               <!-- sku组件 -->
               <XtxSku :goods="detailObj" @change="skuChange"></XtxSku>
               <!-- 数据组件 -->
-
+              <el-input-number v-model="num" @change="inputChange" :min="1" :max="10" label="label"></el-input-number>
               <!-- 按钮组件 -->
               <div>
-                <el-button size="large" class="btn">
+                <el-button size="large" class="btn" @click="addCart">
                   加入购物车
                 </el-button>
               </div>
@@ -120,18 +120,45 @@ import detailHot from '@/views/detail/detail-sub/detailHot.vue'
 import imageView from '@/components/imageView/index.vue'
 import XtxSku from '@/components/XtxSku/index.vue'
 import {getDetailById} from '@/api/detail'
-import { ref } from 'vue'
+import {useCart} from '@/stores/cart.js'
+import { getCurrentInstance, ref } from 'vue'
 import {useRoute} from 'vue-router'
 const route = useRoute()
-
+const {proxy} = getCurrentInstance()
 const detailObj = ref({})
 
 const detailById = async () => {
   const res = await getDetailById(route.params.id)
   detailObj.value = res.result
 }
+// sku被操作时
+let skuObj = {}
 const skuChange = (options)=>{
+  skuObj = options
+}
+// cart 
+const num = ref(1)
+const cart = useCart()
+const inputChange = (options) =>{
   console.log(options);
+}
+const addCart = () =>{
+  if(!skuObj.skuId) {
+   proxy.$message.success('请选择规格')
+   return
+  }
+   const {id,name,price,mainPictures} = detailObj.value
+   let good = {
+     id,
+     name,
+     picture:mainPictures[0],
+     price,
+     count:num.value,
+     skuId:skuObj.skuId,
+     arrtsText:skuObj.specsText,     
+     selected:true
+   }
+   cart.addCart(good)
 }
 detailById()
 </script>

@@ -15,11 +15,12 @@
         <input type="text" placeholder="搜一搜">
       </div>
       <!-- 头部购物车 -->
-      
+       <cart />
     </div>
   </header>
 </template>
 <script setup>
+import cart from './cart.vue'
 import {useCategoryStore} from '@/stores/category'
 const categoryStroe =  useCategoryStore()
 </script>

@@ -6,7 +6,7 @@
           <thead>
             <tr>
               <th width="120">
-                <el-checkbox/>
+                <el-checkbox :model-value="cart.allChecked" @change="allCheckedChange"/>
               </th>
               <th width="400">商品信息</th>
               <th width="220">单价</th>
@@ -17,9 +17,11 @@
           </thead>
           <!-- 商品列表 -->
           <tbody>
-            <tr v-for="i in cartList" :key="i.id">
+            <tr v-for="i in cart.cartList" :key="i.id">
               <td>
-                <el-checkbox />
+                <!-- 采用v-model绑定时，数据具有响应式，无需操作数据即可更改，不利于后续的请求发送 -->
+                <!-- <el-checkbox v-model="i.selected" @change="checkedChange(i)"/> -->
+                 <el-checkbox :model-value="i.selected" @change="(selected)=>{checkedChange(selected,i)}"/>
               </td>
               <td>
                 <div class="goods">
@@ -42,7 +44,7 @@
               </td>
               <td class="tc">
                 <p>
-                  <el-popconfirm title="确认删除吗?" confirm-button-text="确认" cancel-button-text="取消" @confirm="delCart(i)">
+                  <el-popconfirm title="确认删除吗?" confirm-button-text="确认" cancel-button-text="取消" @confirm="cart.deteleCart(i.skuId)">
                     <template #reference>
                       <a href="javascript:;">删除</a>
                     </template>
@@ -50,11 +52,11 @@
                 </p>
               </td>
             </tr>
-            <tr v-if="cartList.length === 0">
+            <tr v-if="cart.cartList.length === 0">
               <td colspan="6">
                 <div class="cart-none">
                   <el-empty description="购物车列表为空">
-                    <el-button type="primary">随便逛逛</el-button>
+                    <el-button type="primary" @click="$router.push('/')">随便逛逛</el-button>
                   </el-empty>
                 </div>
               </td>
@@ -66,8 +68,8 @@
       <!-- 操作栏 -->
       <div class="action">
         <div class="batch">
-          共 10 件商品，已选择 2 件，商品合计：
-          <span class="red">¥ 200.00 </span>
+          共 {{cart.allTotal}} 件商品，已选择 {{cart.checkedTotal}} 件，商品合计：
+          <span class="red">¥ {{cart.allPrice}} </span>
         </div>
         <div class="total">
           <el-button size="large" type="primary" >下单结算</el-button>
@@ -80,7 +82,12 @@
 <script setup>
 import {useCart} from '@/stores/cart.js'
 const cart = useCart()
-const cartList = cart.cartList
+const checkedChange = (selected,options) =>{
+  cart.changeSelect(selected,options)
+}
+const allCheckedChange = (checked)=>{
+  cart.allSelect(checked)
+}
 </script>
 
 <style scoped lang="scss">
